@@ -1,0 +1,25 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "28686711b9c8a30ca2e5",
+  "displayName": "Milestone 2",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280,
+  "pageBinding": {
+    "name": "168b3ecd8829910049e2",
+    "type": "Default",
+    "parameters": []
+  },
+  "visualInteractions": [
+    {
+      "source": "037ef23038586ec0bd27",
+      "target": "389f92af2808d28e0a38",
+      "type": "HighlightFilter"
+    },
+    {
+      "source": "037ef23038586ec0bd27",
+      "target": "4478fbf9c180ce01be30",
+      "type": "HighlightFilter"
+    }
+  ]
+}

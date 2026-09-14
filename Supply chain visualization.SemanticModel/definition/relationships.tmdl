@@ -1,0 +1,55 @@
+relationship 407e0da5-b792-46d8-94f6-228567186567
+	joinOnDateBehavior: datePartOnly
+	fromColumn: FactOrders.'Ship Date'
+	toColumn: LocalDateTable_924edb5b-9d61-4c0e-a399-bf5d8883fff3.Date
+
+relationship 8e8d5dd0-147e-4d8a-8971-27e30d8d0f77
+	joinOnDateBehavior: datePartOnly
+	fromColumn: FactOrders.'Order DateTime'
+	toColumn: LocalDateTable_54dfa0c0-9db4-4378-8f34-96f9605ff34f.Date
+
+relationship 81e3b0dc-246d-46a5-98e6-da237c52e89e
+	joinOnDateBehavior: datePartOnly
+	fromColumn: FactOrders.'Ship DateTime'
+	toColumn: LocalDateTable_626e74f1-0966-40c9-b77d-e08df737d0be.Date
+
+relationship 19828373-6a96-4aa8-ae69-6b0051110a0b
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Stg_DataCoSupplyChain.'Order DateTime'
+	toColumn: LocalDateTable_041b2752-4f20-4832-ad21-a4a32c20aee4.Date
+
+relationship a459420b-0779-4918-b13f-e5e48f63c5bf
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Stg_DataCoSupplyChain.'Ship DateTime'
+	toColumn: LocalDateTable_c08b0792-e7bf-4e8b-8cce-774357fe4237.Date
+
+relationship 1b79d763-aee2-4eca-a0e0-d2eb294f0123
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Stg_DataCoSupplyChain.'Order Date'
+	toColumn: LocalDateTable_145c4b29-3681-4c6e-9cc8-facf9ac03860.Date
+
+relationship c6ccc0bf-02e6-4687-a189-bff108fa92d5
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Stg_DataCoSupplyChain.'Ship Date'
+	toColumn: LocalDateTable_ccba647f-495e-40ca-89b6-7f4ac1638593.Date
+
+relationship AutoDetected_ab3426a1-2cbe-4d87-80c8-771282e8e210
+	fromColumn: Stg_DataCoSupplyChain.'Customer Id'
+	toColumn: DimCustomer.'Customer Id'
+
+relationship AutoDetected_9561e274-c5d8-4ccd-89b3-fc2a0b03efc8
+	fromColumn: FactOrders.'Customer Id'
+	toColumn: DimCustomer.'Customer Id'
+
+relationship AutoDetected_5d150a8c-9790-474b-bc2a-fbaa041b3a69
+	fromColumn: FactOrders.'Product Card Id'
+	toColumn: DimProduct.'Product Card Id'
+
+relationship AutoDetected_6e7676f6-d29c-4f44-8ec3-7fb73349b1dd
+	fromColumn: FactOrders.'Location Key'
+	toColumn: DimOrderLocation.'Location Key'
+
+relationship 0b9412b0-873d-c465-826d-c2236a94fb2d
+	fromColumn: FactOrders.'Order Date'
+	toColumn: DimDate.Date
+

@@ -1,0 +1,76 @@
+table DimOrderLocation
+	lineageTag: ffc697ae-8db0-4f7b-a04b-32ac98271fcb
+
+	column 'Order City'
+		dataType: string
+		lineageTag: d4602414-0aa8-47b3-b005-3af77dce10d9
+		summarizeBy: none
+		sourceColumn: Order City
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Order State'
+		dataType: string
+		lineageTag: 38c04b33-daf1-4669-b9c4-3e1f692fd7c9
+		summarizeBy: none
+		sourceColumn: Order State
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Order Country'
+		dataType: string
+		lineageTag: e5d6772b-2114-4dd8-8db1-ab861612b21c
+		summarizeBy: none
+		sourceColumn: Order Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Order Region'
+		dataType: string
+		lineageTag: 3b952015-6fe3-44db-9ef0-44f2494dd561
+		summarizeBy: none
+		sourceColumn: Order Region
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Order Zipcode'
+		dataType: string
+		lineageTag: 3ae1ea08-896a-49ab-be22-142f245c82c7
+		summarizeBy: none
+		sourceColumn: Order Zipcode
+
+		annotation SummarizationSetBy = Automatic
+
+	column Market
+		dataType: string
+		lineageTag: 5cb25806-0220-4df1-a5f9-dbe928bba886
+		summarizeBy: none
+		sourceColumn: Market
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Location Key'
+		dataType: int64
+		formatString: 0
+		lineageTag: 20561bc8-ae5d-4514-b890-f641e10f00db
+		summarizeBy: none
+		sourceColumn: Location Key
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimOrderLocation = m
+		mode: import
+		source =
+				// Query name: DimOrderLocation
+				let
+				    Source = Stg_DataCoSupplyChain,
+				    Selected = Table.SelectColumns(Source, {"Order City", "Order State", "Order Country", "Order Region", "Order Zipcode", "Market"}),
+				    Deduped = Table.Distinct(Selected),
+				    WithKey = Table.AddIndexColumn(Deduped, "Location Key", 1, 1, Int64.Type)
+				in
+				    WithKey
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

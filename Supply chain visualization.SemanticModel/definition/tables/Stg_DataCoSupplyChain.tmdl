@@ -1,0 +1,749 @@
+table Stg_DataCoSupplyChain
+	isHidden
+	lineageTag: d567ead1-bdba-44e2-93d2-acfb0ceb766f
+
+	column Type
+		dataType: string
+		isHidden
+		lineageTag: e5db8c7d-eb19-4cd8-811b-9e01ead96e8f
+		summarizeBy: none
+		sourceColumn: Type
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Days for shipping (real)'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: ba3ce3da-422a-4cef-aed8-c45bfbb073d7
+		summarizeBy: sum
+		sourceColumn: Days for shipping (real)
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Days for shipment (scheduled)'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 5511ae22-b584-47a0-9d98-21ef42335ae7
+		summarizeBy: sum
+		sourceColumn: Days for shipment (scheduled)
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Benefit per order'
+		dataType: double
+		isHidden
+		lineageTag: 0948fddf-139d-4e9f-a878-cbfc78f4560d
+		summarizeBy: sum
+		sourceColumn: Benefit per order
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Sales per customer'
+		dataType: double
+		isHidden
+		lineageTag: f6af86b2-70ce-4d85-876b-29335b4eae23
+		summarizeBy: sum
+		sourceColumn: Sales per customer
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Delivery Status'
+		dataType: string
+		isHidden
+		lineageTag: 172faed5-9c2a-48e4-8615-6c982ba35f3f
+		summarizeBy: none
+		sourceColumn: Delivery Status
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Late Delivery Risk'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 4d039639-d135-4dfb-b409-fb4896f64f81
+		summarizeBy: sum
+		sourceColumn: Late Delivery Risk
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Category Id'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 6ff02afc-9daf-4b32-93c3-1425bfa09bd3
+		summarizeBy: count
+		sourceColumn: Category Id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Category Name'
+		dataType: string
+		isHidden
+		lineageTag: 9a97dd25-43a1-40cf-b7e5-280e9c5da8a3
+		summarizeBy: none
+		sourceColumn: Category Name
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer City'
+		dataType: string
+		isHidden
+		lineageTag: bbbea644-7248-4fb4-84f5-a59a9a94ae96
+		summarizeBy: none
+		sourceColumn: Customer City
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer Country'
+		dataType: string
+		isHidden
+		lineageTag: d54e4eaf-bf69-46c5-b8b7-51f30033fffa
+		summarizeBy: none
+		sourceColumn: Customer Country
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer Fname'
+		dataType: string
+		isHidden
+		lineageTag: 51479187-d4c0-4373-ad6d-e1e307326d9e
+		summarizeBy: none
+		sourceColumn: Customer Fname
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer Id'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: d0bdedcc-6c54-41c3-9934-1167ca1a205f
+		summarizeBy: none
+		sourceColumn: Customer Id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer Lname'
+		dataType: string
+		isHidden
+		lineageTag: 5a15d03b-c22e-4c4d-92f4-f8dd9c147a5a
+		summarizeBy: none
+		sourceColumn: Customer Lname
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer Segment'
+		dataType: string
+		isHidden
+		lineageTag: 2b2cc1c6-43df-4890-840c-46a7d5955b67
+		summarizeBy: none
+		sourceColumn: Customer Segment
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer State'
+		dataType: string
+		isHidden
+		lineageTag: d43cbd25-3864-4ba7-b929-526dbf4bfeff
+		summarizeBy: none
+		sourceColumn: Customer State
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer Zipcode'
+		dataType: string
+		isHidden
+		lineageTag: 9179f1b3-46b1-4eb8-a487-4511b4411b22
+		summarizeBy: none
+		sourceColumn: Customer Zipcode
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Department Id'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 9fe6ef5a-c492-46c1-a44f-375302943c9a
+		summarizeBy: count
+		sourceColumn: Department Id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Department Name'
+		dataType: string
+		isHidden
+		lineageTag: 909f446d-8ec7-4189-b706-240841c1ae55
+		summarizeBy: none
+		sourceColumn: Department Name
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Latitude
+		dataType: double
+		isHidden
+		lineageTag: a4636ae9-94ed-469c-9a8a-d4309a5a8353
+		summarizeBy: sum
+		sourceColumn: Latitude
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Longitude
+		dataType: double
+		isHidden
+		lineageTag: 00c66b28-f5a2-462c-b38a-48f81f8152c5
+		summarizeBy: sum
+		sourceColumn: Longitude
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Market
+		dataType: string
+		isHidden
+		lineageTag: 813cbab5-da0b-4fd2-829a-ed5171001866
+		summarizeBy: none
+		sourceColumn: Market
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Order City'
+		dataType: string
+		isHidden
+		lineageTag: f32ffd1c-e856-4653-9c39-0db538f9033c
+		summarizeBy: none
+		sourceColumn: Order City
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Order Country'
+		dataType: string
+		isHidden
+		lineageTag: 67d7a4dc-e883-436d-ac17-94a1ce8d1af5
+		summarizeBy: none
+		sourceColumn: Order Country
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Order Customer Id'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 641f5f5b-7a4f-4747-ba3a-9a2dd244ec2b
+		summarizeBy: count
+		sourceColumn: Order Customer Id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Order DateTime'
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		lineageTag: ea77e3b4-aad1-4626-8102-639c6809ea3e
+		summarizeBy: none
+		sourceColumn: Order DateTime
+
+		variation Variation
+			isDefault
+			relationship: 19828373-6a96-4aa8-ae69-6b0051110a0b
+			defaultHierarchy: LocalDateTable_041b2752-4f20-4832-ad21-a4a32c20aee4.'Date Hierarchy'
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Order Id'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 59511139-2be8-4e68-b615-a90840eb4930
+		summarizeBy: count
+		sourceColumn: Order Id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Order Item Cardprod Id'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: d299c3a6-4349-457b-a7e8-8eda39aeecc9
+		summarizeBy: count
+		sourceColumn: Order Item Cardprod Id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Order Item Discount'
+		dataType: double
+		isHidden
+		lineageTag: a8741233-6442-4617-8e8a-a6a5e3694432
+		summarizeBy: sum
+		sourceColumn: Order Item Discount
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Order Item Discount Rate'
+		dataType: double
+		isHidden
+		lineageTag: 9f2b8d40-5f87-4744-b8df-18e9089a41fc
+		summarizeBy: sum
+		sourceColumn: Order Item Discount Rate
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Order Item Id'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 0da17ba1-1476-4ed5-a22a-d0e2b86d5668
+		summarizeBy: count
+		sourceColumn: Order Item Id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Order Item Product Price'
+		dataType: double
+		isHidden
+		lineageTag: f4bf9e2d-c2f5-4222-8bc3-8035050bdecf
+		summarizeBy: sum
+		sourceColumn: Order Item Product Price
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Order Item Profit Ratio'
+		dataType: double
+		isHidden
+		lineageTag: fb1356f1-dac0-4942-a4cb-3320c090f2f1
+		summarizeBy: sum
+		sourceColumn: Order Item Profit Ratio
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Order Item Quantity'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 64c0fa8c-b660-4996-86df-01524713daec
+		summarizeBy: sum
+		sourceColumn: Order Item Quantity
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sales
+		dataType: double
+		isHidden
+		lineageTag: 0348916d-5d8f-4a39-9bdd-a17b46446932
+		summarizeBy: sum
+		sourceColumn: Sales
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Order Item Total'
+		dataType: double
+		isHidden
+		lineageTag: 9b7372c4-69a2-4f16-81f3-cb89b2100107
+		summarizeBy: sum
+		sourceColumn: Order Item Total
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Order Profit Per Order'
+		dataType: double
+		isHidden
+		lineageTag: 07f3bed1-07df-441c-80e5-caf274250098
+		summarizeBy: sum
+		sourceColumn: Order Profit Per Order
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Order Region'
+		dataType: string
+		isHidden
+		lineageTag: 14543225-85b9-472b-b419-39964c0e14d0
+		summarizeBy: none
+		sourceColumn: Order Region
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Order State'
+		dataType: string
+		isHidden
+		lineageTag: 75bf3d72-4e35-4caf-aab2-9d6e483888ee
+		summarizeBy: none
+		sourceColumn: Order State
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Order Status'
+		dataType: string
+		isHidden
+		lineageTag: 145f2c38-207a-48a9-9322-831e30428133
+		summarizeBy: none
+		sourceColumn: Order Status
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Product Card Id'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 966042a0-e772-49a6-bd46-914c422d0229
+		summarizeBy: count
+		sourceColumn: Product Card Id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Product Category Id'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 5936aeda-0c74-44e2-a0a0-85f8550a36c7
+		summarizeBy: count
+		sourceColumn: Product Category Id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Product Description'
+		dataType: string
+		isHidden
+		lineageTag: 04c81449-88ad-467a-9084-b89cdb862d14
+		summarizeBy: none
+		sourceColumn: Product Description
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Product Image'
+		dataType: string
+		isHidden
+		lineageTag: dc68962d-ce68-4bb4-8c34-338f78220a95
+		summarizeBy: none
+		sourceColumn: Product Image
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Product Name'
+		dataType: string
+		isHidden
+		lineageTag: 2863474c-a94c-43b3-8525-db5a9ce251ca
+		summarizeBy: none
+		sourceColumn: Product Name
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Product Price'
+		dataType: double
+		isHidden
+		lineageTag: 23680f0c-0395-40f6-913c-80f9951b3074
+		summarizeBy: sum
+		sourceColumn: Product Price
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Product Status'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: d51c5e41-227c-4bf3-9471-94f8a1e29f3a
+		summarizeBy: sum
+		sourceColumn: Product Status
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ship DateTime'
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		lineageTag: 8707ba96-0e76-43a3-82c3-198ea8265536
+		summarizeBy: none
+		sourceColumn: Ship DateTime
+
+		variation Variation
+			isDefault
+			relationship: a459420b-0779-4918-b13f-e5e48f63c5bf
+			defaultHierarchy: LocalDateTable_c08b0792-e7bf-4e8b-8cce-774357fe4237.'Date Hierarchy'
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Shipping Mode'
+		dataType: string
+		isHidden
+		lineageTag: 845cb57b-66ca-4734-a849-f386901eed29
+		summarizeBy: none
+		sourceColumn: Shipping Mode
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Order Date'
+		dataType: dateTime
+		isHidden
+		formatString: Long Date
+		lineageTag: 0a853c5f-d388-4484-a41a-0fe4a5403e0b
+		summarizeBy: none
+		sourceColumn: Order Date
+
+		variation Variation
+			isDefault
+			relationship: 1b79d763-aee2-4eca-a0e0-d2eb294f0123
+			defaultHierarchy: LocalDateTable_145c4b29-3681-4c6e-9cc8-facf9ac03860.'Date Hierarchy'
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Ship Date'
+		dataType: dateTime
+		isHidden
+		formatString: Long Date
+		lineageTag: 96c33fb8-8806-4347-838b-b3b2770e81d5
+		summarizeBy: none
+		sourceColumn: Ship Date
+
+		variation Variation
+			isDefault
+			relationship: c6ccc0bf-02e6-4687-a189-bff108fa92d5
+			defaultHierarchy: LocalDateTable_ccba647f-495e-40ca-89b6-7f4ac1638593.'Date Hierarchy'
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Customer Name'
+		dataType: string
+		isHidden
+		lineageTag: 17ebf3c0-f935-40cf-8ac9-248510f01a9f
+		summarizeBy: none
+		sourceColumn: Customer Name
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Stg_DataCoSupplyChain = m
+		mode: import
+		source =
+				//Query name: Stg_DataCoSupplyChain
+				let
+				    Source = Csv.Document(
+				        File.Contents("C:\Users\Amit kumar\Downloads\DataCoSupplyChainDataset.csv"),
+				        [Delimiter=",", Columns=53, Encoding=1252, QuoteStyle=QuoteStyle.None]
+				    ),
+				    PromotedHeaders = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    ChangedTypes = Table.TransformColumnTypes(
+				        PromotedHeaders,
+				        {
+				            {"Type", type text},
+				            {"Days for shipping (real)", Int64.Type},
+				            {"Days for shipment (scheduled)", Int64.Type},
+				            {"Benefit per order", type number},
+				            {"Sales per customer", type number},
+				            {"Delivery Status", type text},
+				            {"Late_delivery_risk", Int64.Type},
+				            {"Category Id", Int64.Type},
+				            {"Category Name", type text},
+				            {"Customer City", type text},
+				            {"Customer Country", type text},
+				            {"Customer Email", type text},
+				            {"Customer Fname", type text},
+				            {"Customer Id", Int64.Type},
+				            {"Customer Lname", type text},
+				            {"Customer Password", type text},
+				            {"Customer Segment", type text},
+				            {"Customer State", type text},
+				            {"Customer Street", type text},
+				            {"Customer Zipcode", type text},
+				            {"Department Id", Int64.Type},
+				            {"Department Name", type text},
+				            {"Latitude", type number},
+				            {"Longitude", type number},
+				            {"Market", type text},
+				            {"Order City", type text},
+				            {"Order Country", type text},
+				            {"Order Customer Id", Int64.Type},
+				            {"order date (DateOrders)", type text},
+				            {"Order Id", Int64.Type},
+				            {"Order Item Cardprod Id", Int64.Type},
+				            {"Order Item Discount", type number},
+				            {"Order Item Discount Rate", type number},
+				            {"Order Item Id", Int64.Type},
+				            {"Order Item Product Price", type number},
+				            {"Order Item Profit Ratio", type number},
+				            {"Order Item Quantity", Int64.Type},
+				            {"Sales", type number},
+				            {"Order Item Total", type number},
+				            {"Order Profit Per Order", type number},
+				            {"Order Region", type text},
+				            {"Order State", type text},
+				            {"Order Status", type text},
+				            {"Order Zipcode", type text},
+				            {"Product Card Id", Int64.Type},
+				            {"Product Category Id", Int64.Type},
+				            {"Product Description", type text},
+				            {"Product Image", type text},
+				            {"Product Name", type text},
+				            {"Product Price", type number},
+				            {"Product Status", Int64.Type},
+				            {"shipping date (DateOrders)", type text},
+				            {"Shipping Mode", type text}
+				        },
+				        "en-US"
+				    ),
+				    TrimmedText = Table.TransformColumns(
+				        ChangedTypes,
+				        List.Transform(
+				            Table.ColumnsOfType(ChangedTypes, {type text}),
+				            each {_, Text.Trim, type text}
+				        )
+				    ),
+				    ParsedDates = Table.TransformColumns(
+				        TrimmedText,
+				        {
+				            {"order date (DateOrders)", each try DateTime.FromText(_, "en-US") otherwise null, type datetime},
+				            {"shipping date (DateOrders)", each try DateTime.FromText(_, "en-US") otherwise null, type datetime}
+				        }
+				    ),
+				    Renamed = Table.RenameColumns(
+				        ParsedDates,
+				        {
+				            {"order date (DateOrders)", "Order DateTime"},
+				            {"shipping date (DateOrders)", "Ship DateTime"},
+				            {"Late_delivery_risk", "Late Delivery Risk"}
+				        }
+				    ),
+				    AddedDates = Table.TransformColumns(
+				        Table.AddColumn(Renamed, "Order Date", each Date.From([Order DateTime]), type date),
+				        {{"Ship DateTime", each _, type datetime}}
+				    ),
+				    AddedShipDate = Table.AddColumn(AddedDates, "Ship Date", each Date.From([Ship DateTime]), type date),
+				    AddedCustomerName = Table.AddColumn(AddedShipDate, "Customer Name", each Text.Combine(List.RemoveNulls({[Customer Fname], [Customer Lname]}), " "), type text),
+				    RemovedPII = Table.RemoveColumns(AddedCustomerName,{"Customer Email", "Customer Password", "Customer Street", "Order Zipcode"})
+				in
+				    RemovedPII
+
+	changedProperty = IsHidden
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

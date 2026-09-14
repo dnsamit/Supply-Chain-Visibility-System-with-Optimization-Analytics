@@ -1,0 +1,116 @@
+table DimProduct
+	lineageTag: bb8dfae8-bc96-4339-9c79-20e02a7c0331
+
+	column 'Product Card Id'
+		dataType: int64
+		formatString: 0
+		lineageTag: d912261e-4673-4a26-8261-da9e1d29c8b2
+		summarizeBy: none
+		sourceColumn: Product Card Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Product Category Id'
+		dataType: int64
+		formatString: 0
+		lineageTag: 46a4790a-3d56-4f92-be8c-9e21a951517b
+		summarizeBy: none
+		sourceColumn: Product Category Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Product Name'
+		dataType: string
+		lineageTag: c13f4b93-1797-49b8-bd05-f1f3a95c212f
+		summarizeBy: none
+		sourceColumn: Product Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Product Description'
+		dataType: string
+		lineageTag: c165a909-bd57-4580-8d3f-7f3d6cb1c4c4
+		summarizeBy: none
+		sourceColumn: Product Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Product Image'
+		dataType: string
+		lineageTag: f3a5f998-117f-45de-b0e4-c2b60482f218
+		summarizeBy: none
+		sourceColumn: Product Image
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Product Price'
+		dataType: double
+		lineageTag: 370de230-1100-47ab-8cb4-c0a668c30909
+		summarizeBy: none
+		sourceColumn: Product Price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Product Status'
+		dataType: int64
+		formatString: 0
+		lineageTag: 99878296-063e-4683-bbe6-ec433832e803
+		summarizeBy: none
+		sourceColumn: Product Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Category Id'
+		dataType: int64
+		formatString: 0
+		lineageTag: 12e6cf08-4a16-46c6-a845-05acc9e81e1d
+		summarizeBy: none
+		sourceColumn: Category Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Category Name'
+		dataType: string
+		lineageTag: f913fe63-6bd8-4a44-85ac-b1c52c0ed64b
+		summarizeBy: none
+		sourceColumn: Category Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Department Id'
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 7b39127f-d144-48d9-81b0-5699f7f2af4e
+		summarizeBy: none
+		sourceColumn: Department Id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Department Name'
+		dataType: string
+		lineageTag: fd4e3e02-6aa4-4ec1-9752-2d402b240e02
+		summarizeBy: none
+		sourceColumn: Department Name
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimProduct = m
+		mode: import
+		source =
+				// Query name: DimProduct
+				let
+				    Source = Stg_DataCoSupplyChain,
+				    Selected = Table.SelectColumns(Source, {"Product Card Id", "Product Category Id", "Product Name", "Product Description", "Product Image", "Product Price", "Product Status", "Category Id", "Category Name", "Department Id", "Department Name"}),
+				    Deduped = Table.Distinct(Selected, {"Product Card Id"})
+				in
+				    Deduped
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

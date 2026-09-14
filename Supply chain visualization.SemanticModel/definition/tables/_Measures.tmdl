@@ -1,0 +1,646 @@
+table _Measures
+	lineageTag: e15039d4-c8ec-4ef9-bf95-8a55a17335bf
+
+	measure 'Total Sales' =
+			
+			SUM('FactOrders'[Sales])
+		lineageTag: ee7e2147-cf11-468c-bea7-a074dc16cfad
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Net Sales' =
+			
+			[Total Sales] - [Total Discount]
+		lineageTag: 231d8fe0-debc-446a-8b67-b2d0b615b64d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Profit' =
+			
+			SUM('FactOrders'[Order Profit Per Order])
+		lineageTag: ce683698-50ed-4a83-ba6f-11ab3d950a09
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Discount' =
+			
+			SUM('FactOrders'[Order Item Discount])
+		lineageTag: 0ec536e6-fc3f-4f28-9e59-23e5a34ecc04
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Units Sold' =
+			
+			SUM('FactOrders'[Order Item Quantity])
+		formatString: 0
+		lineageTag: 86e1de38-0009-4590-9def-2f5c17862589
+
+	measure 'Order Count' = DISTINCTCOUNT ( FactOrders[Order Id] )
+		formatString: 0
+		lineageTag: 80c0d7e9-1006-4fb7-abf8-669b445f84e7
+
+	measure 'Order Line Count' =
+			
+			COUNTROWS('FactOrders')
+		formatString: 0
+		lineageTag: f9e04787-8ad1-4a58-85c9-553982665a11
+
+	measure 'Customer Count' =
+			
+			DISTINCTCOUNT('FactOrders'[Customer Id])
+		formatString: 0
+		lineageTag: 2667b94e-8f38-4848-a986-141cb4f31ad3
+
+	measure 'Product Count' =
+			
+			DISTINCTCOUNT ( FactOrders[Product Card Id] )
+		formatString: 0
+		lineageTag: 54a0f75e-6188-480c-83b7-e1cf17b87d26
+
+	measure 'Average Order Value' =
+			
+			DIVIDE([Total Sales], [Total Orders], 0)
+		lineageTag: 0cc13b67-cf58-4c49-94c0-83d5a1ac75ee
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Profit Margin %' =
+			
+			DIVIDE([Total Profit], [Total Sales], 0)
+		lineageTag: 67a26191-717f-4793-95b2-13cb1a80e43c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Discount Rate %' =
+			
+			AVERAGE('FactOrders'[Order Item Discount Rate])
+		lineageTag: 56f84d00-c946-41fb-9f4e-6cae1b432162
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Late Delivered Orders' =
+			
+			CALCULATE(
+			    COUNTROWS('FactOrders'),
+			    'FactOrders'[Delivery Status] = "Late delivery"
+			)
+		formatString: 0%;-0%;0%
+		lineageTag: 5b8bdaff-0115-43c0-8bda-72c127969ac7
+
+	measure 'Late Delivery %' =
+			
+			DIVIDE([Late Delivered Orders], [Total Shipments], 0)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 0467ac1d-b9f0-4e84-86d1-2275bfe84fb9
+
+	measure 'On-Time Delivered Orders' =
+			
+			CALCULATE(
+			    COUNTROWS('FactOrders'),
+			    'FactOrders'[Delivery Status] IN {"Shipping on time", "Advance shipping"}
+			)
+		formatString: 0
+		lineageTag: e6246e91-e8cb-4768-bce4-ad2159ce777c
+
+	measure 'On-Time Delivery %' =
+			
+			DIVIDE([On-Time Delivered Orders], [Total Shipments], 0)
+		formatString: 0%;-0%;0%
+		lineageTag: d4ee4aa7-9b84-4af7-89fe-cb81377a109a
+
+	measure 'Average Scheduled Ship Days' =
+			
+			AVERAGE('FactOrders'[Days for shipment (scheduled)])
+		lineageTag: 4819e50e-4d7f-4022-985a-410b3b592cc6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Shipping Delay Days' =
+			
+			[Average Delivery Days] - [Average Scheduled Ship Days]
+		lineageTag: 4f4794c6-4e05-4121-a1ac-e6d16d25eb1b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Cancellation Count' =
+			
+			CALCULATE(
+			    COUNTROWS('FactOrders'),
+			    'FactOrders'[Order Status] = "CANCELED"
+			        || 'FactOrders'[Delivery Status] = "Shipping canceled"
+			)
+		formatString: 0
+		lineageTag: 96c201d2-d915-47f1-9ff9-98f7495d1627
+
+	measure 'Cancellation %' =
+			
+			DIVIDE([Cancellation Count], [Total Shipments], 0)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 73f4a383-c74e-4bdb-8f2a-a234f00831d2
+
+	measure 'Sales YTD' =
+			
+			TOTALYTD([Total Sales], 'DimDate'[Date])
+		lineageTag: 3e6f612e-5420-4c32-854d-e4baf946e5e1
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Profit YTD' =
+			
+			TOTALYTD([Total Profit], 'DimDate'[Date])
+		lineageTag: b96d8580-2d8d-4dd3-82d9-fe80ae7aee59
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Sales Previous Week' =
+			
+			CALCULATE (
+			    [Total Sales],
+			    DATEADD ( DimDate[Date], -7, DAY ))
+		lineageTag: d16288cd-c08a-4e82-9417-fdd9381464ff
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Sales MoM %' =
+			
+			DIVIDE(
+			    [Total Sales] - [Sales Previous Month],
+			    [Sales Previous Month],
+			    0
+			)
+		lineageTag: 5f475137-5272-466f-b060-9d7fbf96cced
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Inventory Value Proxy' =
+			
+			SUMX(
+			    'DimProduct',
+			    'DimProduct'[Product Price] * [Units Sold]
+			)
+		lineageTag: 1e955430-fe57-4b00-82e9-f27a2a92a59b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Average Inventory Value Proxy' = ```
+			
+			AVERAGEX (
+			    VALUES ( DimDate[Month Year] ),
+			    [Inventory Value Proxy]
+			)
+			
+			```
+		lineageTag: 5130e714-0666-4c4b-9ae3-8c6c9d490179
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Inventory Turnover Proxy' =
+			
+			DIVIDE(
+			    [Total Sales],
+			    [Inventory Value Proxy],
+			    0
+			)
+		formatString: 0.0
+		lineageTag: 8c591e90-2c50-4667-a250-f9ca679cbc1d
+
+	measure 'Days Inventory Outstanding Proxy' =
+			
+			DIVIDE(365, [Inventory Turnover Proxy], 0)
+		lineageTag: 80292752-3ca1-408e-a21b-2e5bb5db5108
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Active Product %' =
+			
+			DIVIDE([Active Products], [Available Products], 0)
+		formatString: 0%;-0%;0%
+		lineageTag: d58e35dd-0450-424d-bf05-fc211d9e1d0c
+
+	measure 'Active Products' =
+			
+			CALCULATE(
+			    DISTINCTCOUNT('FactOrders'[Product Card Id]),
+			    'FactOrders'[Order Item Quantity] > 0
+			)
+		formatString: 0
+		lineageTag: a41de7ce-c24b-4439-b870-e833c429fc59
+
+	measure 'Average Delivery Days' =
+			
+			AVERAGE('FactOrders'[Days for shipping (real)])
+		formatString: Days
+		lineageTag: 331f70fa-9305-4d01-9e4f-e8518968d045
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	measure 'Inventory Value Previous Month' =
+			
+			CALCULATE (
+			    [Inventory Value Proxy],
+			    DATEADD ( DimDate[Date], -1, MONTH )
+			)
+		lineageTag: a04d9549-121d-4b59-9d0c-5b2b6e85d2a7
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Inventory Value MoM %' =
+			
+			DIVIDE (
+			    [Inventory Value Proxy] - [Inventory Value Previous Month],
+			    [Inventory Value Previous Month]
+			)
+		lineageTag: 5452a3a1-66b3-49ca-bbde-b7e9bb1e5268
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Inventory Turnover Previous Month' =
+			
+			CALCULATE (
+			    [Inventory Turnover Proxy],
+			    DATEADD ( DimDate[Date], -1, MONTH )
+			)
+		lineageTag: e57c8ac3-0d69-41c0-9aa7-f39618b83066
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Inventory Turnover MoM %' =
+			
+			DIVIDE (
+			    [Inventory Turnover Proxy] - [Inventory Turnover Previous Month],
+			    [Inventory Turnover Previous Month]
+			)
+		lineageTag: c929d154-9fe6-451b-9f65-2c6d79d03f0b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Available Products' =
+			
+			DISTINCTCOUNT('DimProduct'[Product Card Id])
+		formatString: 0
+		lineageTag: 02a6a6f7-ef15-4ed9-bee5-fa16a2537c0f
+
+	measure 'Unavailable Products' = ```
+			
+			CALCULATE (
+			    DISTINCTCOUNT ( DimProduct[Product Card Id] ),
+			    DimProduct[Product Status] <> 0
+			)
+			
+			```
+		lineageTag: 610cc8fd-925b-4295-8300-6d576dea6812
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Product Availability %' =
+			
+			DIVIDE ( [Available Products], [Product Count] )
+		lineageTag: eb656a73-ec33-457b-b840-716df135e187
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Delivered Orders' =
+			
+			CALCULATE (
+			    [Order Count],
+			    FactOrders[Delivery Status] <> "Shipping canceled",
+			    FactOrders[Order Status] <> "CANCELED"
+			)
+		formatString: 0
+		lineageTag: d33e620c-83d5-4039-a68b-289d3b118a9d
+
+	measure 'Delivery Success %' =
+			
+			DIVIDE(
+			    CALCULATE(
+			        COUNTROWS('FactOrders'),
+			        'FactOrders'[Delivery Status] <> "Shipping canceled"
+			            && 'FactOrders'[Order Status] <> "CANCELED"
+			    ),
+			    [Total Shipments],
+			    0
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 1f9d6296-01e8-4273-8ea0-0286e43e6276
+
+	measure 'Returned Orders' =
+			
+			CALCULATE (
+			    [Order Count],
+			    FactOrders[Order Status] = "RETURNED"
+			)
+		formatString: 0
+		lineageTag: fce8c501-afe0-4b3d-b274-98b2d1cb78ca
+
+	measure 'Delivery Delay Variance Days' =
+			
+			AVERAGEX(
+			    'FactOrders',
+			    'FactOrders'[Days for shipping (real)] - 'FactOrders'[Days for shipment (scheduled)]
+			)
+		formatString: 0.00
+		lineageTag: f6b4ba27-fe71-4538-a746-0f4407a1535f
+
+	measure 'Delivery Delay Variance %' =
+			
+			DIVIDE (
+			    [Delivery Delay Variance Days],
+			    [Average Scheduled Ship Days]
+			)
+		lineageTag: 09e10068-a2e5-4f26-bc9e-466afcca49e4
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Delivered Orders Previous Week' =
+			
+			CALCULATE (
+			    [Delivered Orders],
+			    DATEADD ( DimDate[Date], -7, DAY )
+			)
+		formatString: 0
+		lineageTag: 02edbabc-ae5d-4c94-ad69-dfa5afb172d6
+
+	measure 'Delivered Orders WoW %' =
+			
+			DIVIDE (
+			    [Delivered Orders] - [Delivered Orders Previous Week],
+			    [Delivered Orders Previous Week]
+			)
+		lineageTag: 14b2f5e1-35dd-46cd-9560-83e94981fd65
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Inventory Value Previous Week' = ```
+			
+			CALCULATE (
+			    [Inventory Value Proxy],
+			    DATEADD ( DimDate[Date], -7, DAY )
+			)
+			
+			```
+		lineageTag: 3e252179-b927-4fd3-8208-54dc6d0add21
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Inventory Value WoW %' = ```
+			
+			DIVIDE (
+			    [Inventory Value Proxy] - [Inventory Value Previous Week],
+			    [Inventory Value Previous Week]
+			)
+			
+			```
+		lineageTag: f62b9134-5fb2-4fc4-a3ad-bd504a4b740c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Sales WoW %' =
+			
+			DIVIDE (
+			    [Total Sales] - [Total Sales Previous Week],
+			    [Total Sales Previous Week])
+		lineageTag: 9433cdc7-78cb-4681-b58c-15390afdfcbb
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Shipments' =
+			
+			DISTINCTCOUNT('FactOrders'[Order Item Id])
+		formatString: 0
+		lineageTag: f94a6117-5dbb-4fe0-a645-a9c30318f67a
+
+	measure 'Total Orders' =
+			
+			DISTINCTCOUNT('FactOrders'[Order Id])
+		formatString: 0
+		lineageTag: 2ad95b18-8ffd-498f-ae07-fb5351d205a8
+
+	measure 'Sales Velocity Units Per Day' =
+			
+			DIVIDE(
+			    [Units Sold],
+			    DISTINCTCOUNT('DimDate'[Date]),
+			    0
+			)
+		lineageTag: 41c94efe-64d1-406a-b087-784910f0f6bd
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Transportation Cost' =
+			
+			SUMX(
+			    'FactOrders',
+			    'FactOrders'[Sales] - 'FactOrders'[Order Profit Per Order]
+			)
+		lineageTag: 83cb24c2-139f-49e3-91a6-531466a36150
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Transportation Cost Per Shipment' =
+			
+			DIVIDE([Total Transportation Cost], [Total Shipments], 0)
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: e6ed7ce7-0799-49ef-8062-221ab453f86b
+
+	measure 'Transportation Cost % of Sales' =
+			
+			DIVIDE([Total Transportation Cost], [Total Sales], 0)
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: a775b936-b105-40e4-b150-de5611f2b425
+
+	measure 'Overall Supplier Rating' =
+			
+			VAR AccuracyComponent = [Delivery Success %] * 50
+			VAR OnTimeComponent = [On-Time Delivery %] * 30
+			VAR DelayComponent = MAX(0, (1 - DIVIDE([Delivery Delay Variance Days], 5, 0)) * 20)
+			RETURN
+			ROUND(AccuracyComponent + OnTimeComponent + DelayComponent, 1)
+		formatString: 0.0
+		lineageTag: 057fb084-e3b4-4a36-9a34-899ce02ab0f5
+
+	measure 'Supplier Rating Tier' =
+			
+			SWITCH(
+			    TRUE(),
+			    [Overall Supplier Rating] >= 80, "Tier 1 - Preferred Partner",
+			    [Overall Supplier Rating] >= 65, "Tier 2 - Acceptable",
+			    "Tier 3 - Critical Risk"
+			)
+		lineageTag: 10bb7e77-64d4-4a77-96a9-a6d376180710
+
+	measure 'Sales Previous Month' =
+			
+			CALCULATE(
+			    [Total Sales],
+			    PREVIOUSMONTH('DimDate'[Date])
+			)
+		lineageTag: 02b55d1f-2b4e-4ccc-9aaf-1fcf00799108
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Cost Per Shipment' =
+			
+			DIVIDE([Total Transportation Cost], [Total Shipments], 0)
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: 566d85cb-4c7a-4965-9636-d543f1a74424
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Avg Transportation Charge Per Unit' =
+			
+			DIVIDE([Total Transportation Cost], [Units Sold], 0)
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: ea9b806d-a05a-4435-a530-2c3786cc52d3
+
+	measure 'Carrier On-Time Delivery %' =
+			
+			DIVIDE(
+			    CALCULATE(
+			        COUNTROWS('FactOrders'),
+			        'FactOrders'[Delivery Status] = "Shipping on time"
+			    ),
+			    [Total Shipments],
+			    0
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 6d649922-e663-4825-9dd5-6b96b16de6a9
+
+	measure 'Delivery Accuracy %' =
+			
+			DIVIDE(
+			    CALCULATE(
+			        COUNTROWS('FactOrders'),
+			        'FactOrders'[Delivery Status] IN {"Shipping on time", "Advance shipping"}
+			    ),
+			    [Total Shipments],
+			    0
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 4573df26-30fe-427b-9cfe-f8cd1f87bdd1
+
+	measure 'Avg Time Delivery Days' =
+			
+			AVERAGE('FactOrders'[Days for shipping (real)])
+		lineageTag: 39b83392-9e09-4054-ad50-d0acd47e654e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Warehouse Cost' =
+			
+			SUMX(
+			    'FactOrders',
+			    ('FactOrders'[Sales] - 'FactOrders'[Order Profit Per Order]) * 0.35
+			)
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: 3369aa1c-6cb7-4fff-8abd-744993aa5ba9
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Warehouse Cost Per Order' =
+			
+			DIVIDE([Total Warehouse Cost], [Total Orders], 0)
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: ac41869e-944d-4327-b305-e442c9df6a4e
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Order Fulfillment Rate %' =
+			
+			DIVIDE(
+			    CALCULATE(
+			        COUNTROWS('FactOrders'),
+			        'FactOrders'[Order Status] = "COMPLETE"
+			            || 'FactOrders'[Delivery Status] IN {"Shipping on time", "Advance shipping"}
+			    ),
+			    COUNTROWS('FactOrders'),
+			    0
+			)
+		formatString: #,0.0%;-#,0.0%;#,0.0%
+		lineageTag: e63c2b3d-5a6b-4671-b627-74daa2a0360b
+
+	measure 'Warehouse Capacity Utilization %' =
+			
+			VAR CurrentThroughput = [Units Sold]
+			VAR MaxHubCapacity = [Available Products] * 1200
+			RETURN
+			MIN(1, DIVIDE(CurrentThroughput, MaxHubCapacity, 0))
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: d3041a2d-ae24-475b-a891-f9ee76793108
+
+	measure 'Warehouse Efficiency %' =
+			
+			VAR FulfillmentScore = [Order Fulfillment Rate %] * 0.50
+			VAR OnTimeScore = [On-Time Delivery %] * 0.30
+			VAR TurnVelocityScore = MIN(1, DIVIDE([Inventory Turnover Proxy], 40, 0)) * 0.20
+			VAR CombinedScore = FulfillmentScore + OnTimeScore + TurnVelocityScore
+			RETURN
+			CombinedScore
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 078f7914-a549-4568-b0dd-06f5ba778659
+
+	measure 'Alert Late Risk Orders' =
+			
+			CALCULATE(
+			    COUNTROWS('FactOrders'),
+			    'FactOrders'[Late Delivery Risk] = 1,
+			    'FactOrders'[Delivery Status] <> "Shipping canceled"
+			)
+		formatString: 0
+		lineageTag: e00473ff-8785-48e8-8ca5-d7dc7f9e2725
+
+	measure 'Alert Canceled Orders' =
+			
+			CALCULATE(
+			    COUNTROWS('FactOrders'),
+			    'FactOrders'[Delivery Status] = "Shipping canceled"
+			        || 'FactOrders'[Order Status] = "CANCELED"
+			)
+		formatString: 0
+		lineageTag: 356f69d4-2563-4ab6-990e-0630283b8e68
+
+	measure 'Alert Avg Delay Variance' =
+			
+			AVERAGEX(
+			    'FactOrders',
+			    'FactOrders'[Days for shipping (real)] - 'FactOrders'[Days for shipment (scheduled)]
+			)
+		formatString: 0.00
+		lineageTag: 8473fab3-b034-4c27-a8c0-325b5ed4bcb4
+
+	measure 'Alert Status Badge' =
+			
+			VAR LateRiskShare = DIVIDE([Alert Late Risk Orders], [Total Orders], 0)
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    LateRiskShare >= 0.50, "🔴 CRITICAL RISK (>50% Late Pipeline)",
+			    LateRiskShare >= 0.25, "🟡 MODERATE RISK (Review Staging)",
+			    "🟢 OPTIMAL (Under Control)"
+			)
+		lineageTag: f092adba-c48d-4312-8a90-a8d98414050e
+
+	measure 'Alert Late Risk %' =
+			
+			DIVIDE(
+			    CALCULATE(
+			        DISTINCTCOUNT('FactOrders'[Order Id]),
+			        'FactOrders'[Late Delivery Risk] = 1
+			    ),
+			    [Total Orders],
+			    0
+			)
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 7b252068-4506-4ad2-aa8a-d34c86ce56b3
+
+	partition _Measures = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"Column1", type text}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Column1"})
+				in
+				    #"Removed Columns"
+
+	annotation PBI_ResultType = Table
+

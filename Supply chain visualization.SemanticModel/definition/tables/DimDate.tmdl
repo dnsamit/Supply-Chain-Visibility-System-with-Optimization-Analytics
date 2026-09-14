@@ -1,0 +1,86 @@
+table DimDate
+	lineageTag: eddb7ef9-4fae-44bc-9de0-b9f62ca790f2
+	dataCategory: Time
+
+	column Date
+		dataType: dateTime
+		isKey
+		formatString: Long Date
+		lineageTag: 9ecf5367-9b67-4954-bf7a-777a01c2c873
+		summarizeBy: none
+		sourceColumn: Date
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: 7c07616a-3b26-4ac6-b1ea-3fb94769dd5c
+		summarizeBy: sum
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quarter
+		dataType: string
+		lineageTag: 04304d79-bb96-4130-b85a-e0d97a047912
+		summarizeBy: none
+		sourceColumn: Quarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month No'
+		dataType: int64
+		formatString: 0
+		lineageTag: eca19bc3-b66d-4a3e-a4ff-9cc8404cb003
+		summarizeBy: sum
+		sourceColumn: Month No
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		dataType: string
+		lineageTag: dcfe06e3-15e0-4f4a-b329-03c6015885e5
+		summarizeBy: none
+		sourceColumn: Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Month Year'
+		dataType: string
+		lineageTag: 8ef7a2a0-367e-49a6-960e-3b94bf879539
+		summarizeBy: none
+		sourceColumn: Month Year
+		sortByColumn: Year
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimDate = m
+		mode: import
+		source =
+				// Query name: DimDate
+				let
+				    StartDate = List.Min(FactOrders[Order Date]),
+				    EndDate = List.Max(FactOrders[Ship Date]),
+				    Dates = List.Dates(StartDate, Duration.Days(EndDate - StartDate) + 1, #duration(1, 0, 0, 0)),
+				    AsTable = Table.FromList(Dates, Splitter.SplitByNothing(), {"Date"}),
+				    ChangedType = Table.TransformColumnTypes(AsTable, {{"Date", type date}}),
+				    Year = Table.AddColumn(ChangedType, "Year", each Date.Year([Date]), Int64.Type),
+				    Quarter = Table.AddColumn(Year, "Quarter", each "Q" & Text.From(Date.QuarterOfYear([Date])), type text),
+				    MonthNo = Table.AddColumn(Quarter, "Month No", each Date.Month([Date]), Int64.Type),
+				    Month = Table.AddColumn(MonthNo, "Month", each Date.ToText([Date], "MMM"), type text),
+				    MonthYear = Table.AddColumn(Month, "Month Year", each Date.ToText([Date], "MMM yyyy"), type text),
+				    #"Filtered Rows" = Table.SelectRows(MonthYear, each true)
+				in
+				    #"Filtered Rows"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

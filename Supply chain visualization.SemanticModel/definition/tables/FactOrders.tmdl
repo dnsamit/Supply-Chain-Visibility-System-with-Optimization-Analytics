@@ -1,0 +1,313 @@
+table FactOrders
+	lineageTag: 2ce18a9e-f0f3-4445-bbd9-18a69180af0e
+
+	column 'Order Item Id'
+		dataType: int64
+		formatString: 0
+		lineageTag: a7ac1134-5514-4f9a-b0fa-5588ff12937c
+		summarizeBy: count
+		sourceColumn: Order Item Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Order Id'
+		dataType: int64
+		formatString: 0
+		lineageTag: 9fc379fe-448e-43f7-b300-5cd0401abc9b
+		summarizeBy: count
+		sourceColumn: Order Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Order Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: aedf2eb6-4861-4b1f-af3a-13a43cf9e87b
+		summarizeBy: none
+		sourceColumn: Order Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Ship Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 0095adbd-97dc-4f86-a047-c310fb79f639
+		summarizeBy: none
+		sourceColumn: Ship Date
+
+		variation Variation
+			isDefault
+			relationship: 407e0da5-b792-46d8-94f6-228567186567
+			defaultHierarchy: LocalDateTable_924edb5b-9d61-4c0e-a399-bf5d8883fff3.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Order DateTime'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: b595e165-082e-4f35-b6dc-8efe6170e3b0
+		summarizeBy: none
+		sourceColumn: Order DateTime
+
+		variation Variation
+			isDefault
+			relationship: 8e8d5dd0-147e-4d8a-8971-27e30d8d0f77
+			defaultHierarchy: LocalDateTable_54dfa0c0-9db4-4378-8f34-96f9605ff34f.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ship DateTime'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 8731e06c-86ed-4099-93aa-0484755f7a8e
+		summarizeBy: none
+		sourceColumn: Ship DateTime
+
+		variation Variation
+			isDefault
+			relationship: 81e3b0dc-246d-46a5-98e6-da237c52e89e
+			defaultHierarchy: LocalDateTable_626e74f1-0966-40c9-b77d-e08df737d0be.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer Id'
+		dataType: int64
+		formatString: 0
+		lineageTag: 98b596f6-de15-49af-a27c-c503be9863b6
+		summarizeBy: none
+		sourceColumn: Customer Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Order Customer Id'
+		dataType: int64
+		formatString: 0
+		lineageTag: 63491c69-baab-4668-a589-69bdc7b0f664
+		summarizeBy: count
+		sourceColumn: Order Customer Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Product Card Id'
+		dataType: int64
+		formatString: 0
+		lineageTag: 9911c306-4245-4f3a-a0d5-f3cafc133b36
+		summarizeBy: none
+		sourceColumn: Product Card Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Order Item Cardprod Id'
+		dataType: int64
+		formatString: 0
+		lineageTag: 3f6ec63f-d6b6-4fe6-9fa7-f4978f603b03
+		summarizeBy: count
+		sourceColumn: Order Item Cardprod Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Location Key'
+		dataType: int64
+		formatString: 0
+		lineageTag: 7fc45ecf-1195-40a6-9aa8-970ca78c8377
+		summarizeBy: none
+		sourceColumn: Location Key
+
+		annotation SummarizationSetBy = Automatic
+
+	column Type
+		dataType: string
+		lineageTag: eb218da1-5dfe-4cce-9034-87221a1b0688
+		summarizeBy: none
+		sourceColumn: Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Delivery Status'
+		dataType: string
+		lineageTag: a471962e-6f4e-4eaa-98f0-4e8ec525d50d
+		summarizeBy: none
+		sourceColumn: Delivery Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Late Delivery Risk'
+		dataType: int64
+		formatString: 0
+		lineageTag: 2ebefd80-b773-4310-90ec-c2635edaa19c
+		summarizeBy: sum
+		sourceColumn: Late Delivery Risk
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Order Status'
+		dataType: string
+		lineageTag: 496caf46-edde-487d-9153-dd642d95c7aa
+		summarizeBy: none
+		sourceColumn: Order Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Shipping Mode'
+		dataType: string
+		lineageTag: 9c971ae9-cfb3-41d9-8e1e-e1a79a2dbdf9
+		summarizeBy: none
+		sourceColumn: Shipping Mode
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Days for shipping (real)'
+		dataType: int64
+		formatString: 0
+		lineageTag: 6f8cb959-5e06-46e7-b5bc-ff3c5dff1479
+		summarizeBy: sum
+		sourceColumn: Days for shipping (real)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Days for shipment (scheduled)'
+		dataType: int64
+		formatString: 0
+		lineageTag: 05547dea-54e3-495e-9455-f8c0ffdf1e51
+		summarizeBy: sum
+		sourceColumn: Days for shipment (scheduled)
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Order Item Quantity'
+		dataType: int64
+		formatString: 0
+		lineageTag: fe7c403d-2ba7-4dae-8939-48b906805a3c
+		summarizeBy: sum
+		sourceColumn: Order Item Quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sales
+		dataType: double
+		lineageTag: a8925877-5bd6-4ec2-85cf-3ca44d1c7da0
+		summarizeBy: sum
+		sourceColumn: Sales
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Order Item Total'
+		dataType: double
+		lineageTag: dcd18aa5-3aa0-46e5-9a9f-54523e32e8ba
+		summarizeBy: sum
+		sourceColumn: Order Item Total
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Order Item Discount'
+		dataType: double
+		lineageTag: 8f817150-4781-426e-b428-261ab5d79ab2
+		summarizeBy: sum
+		sourceColumn: Order Item Discount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Order Item Discount Rate'
+		dataType: double
+		lineageTag: ac931659-ec0f-452a-bc3d-5e37767dd478
+		summarizeBy: sum
+		sourceColumn: Order Item Discount Rate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Order Item Product Price'
+		dataType: double
+		lineageTag: e183ae3b-ac0c-4b7b-9401-82a00eb244cb
+		summarizeBy: sum
+		sourceColumn: Order Item Product Price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Benefit per order'
+		dataType: double
+		lineageTag: 4a5a13d7-79ee-4e81-aa50-f11dcd92969b
+		summarizeBy: sum
+		sourceColumn: Benefit per order
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Sales per customer'
+		dataType: double
+		lineageTag: ecefaab9-7902-4e81-b0af-3a0be465aebc
+		summarizeBy: sum
+		sourceColumn: Sales per customer
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Order Profit Per Order'
+		dataType: double
+		lineageTag: d3e4d920-5ade-40db-927e-dcb2bf809ead
+		summarizeBy: sum
+		sourceColumn: Order Profit Per Order
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Order Item Profit Ratio'
+		dataType: double
+		lineageTag: b4753169-344f-4b6c-8c63-cd6bab3343e9
+		summarizeBy: sum
+		sourceColumn: Order Item Profit Ratio
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition FactOrders = m
+		mode: import
+		source =
+				// Query name: FactOrders
+				let
+				    Source = Stg_DataCoSupplyChain,
+				    MergedLocation = Table.NestedJoin(
+				        Source,
+				        {"Order City", "Order State", "Order Country", "Order Region", "Order Zipcode", "Market"},
+				        DimOrderLocation,
+				        {"Order City", "Order State", "Order Country", "Order Region", "Order Zipcode", "Market"},
+				        "DimOrderLocation",
+				        JoinKind.LeftOuter
+				    ),
+				    ExpandedLocation = Table.ExpandTableColumn(MergedLocation, "DimOrderLocation", {"Location Key"}, {"Location Key"}),
+				    Selected = Table.SelectColumns(
+				        ExpandedLocation,
+				        {
+				            "Order Item Id", "Order Id", "Order Date", "Ship Date", "Order DateTime", "Ship DateTime",
+				            "Customer Id", "Order Customer Id", "Product Card Id", "Order Item Cardprod Id", "Location Key",
+				            "Type", "Delivery Status", "Late Delivery Risk", "Order Status", "Shipping Mode",
+				            "Days for shipping (real)", "Days for shipment (scheduled)",
+				            "Order Item Quantity", "Sales", "Order Item Total", "Order Item Discount", "Order Item Discount Rate",
+				            "Order Item Product Price", "Benefit per order", "Sales per customer", "Order Profit Per Order",
+				            "Order Item Profit Ratio"
+				        }
+				    )
+				in
+				    Selected
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,95 @@
+table DimCustomer
+	lineageTag: cb81b2fe-338a-4808-b00c-10b12ad070d5
+
+	column 'Customer Id'
+		dataType: int64
+		formatString: 0
+		lineageTag: bee85480-7b51-4dd5-b2c5-1ba8be8cccbd
+		summarizeBy: none
+		sourceColumn: Customer Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer Name'
+		dataType: string
+		lineageTag: b56c2461-c492-4abf-91f1-9935d67b4d00
+		summarizeBy: none
+		sourceColumn: Customer Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer Segment'
+		dataType: string
+		lineageTag: d4ce2a8a-d334-4f52-acfd-fb1f903ff8aa
+		summarizeBy: none
+		sourceColumn: Customer Segment
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer City'
+		dataType: string
+		lineageTag: 57b330de-4916-48e2-8def-8047040402e6
+		summarizeBy: none
+		sourceColumn: Customer City
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer State'
+		dataType: string
+		lineageTag: 42a9d805-bad2-4e94-9533-5bff2b52c32d
+		summarizeBy: none
+		sourceColumn: Customer State
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer Country'
+		dataType: string
+		lineageTag: 282071df-fed4-474a-958a-f46b6b997f34
+		summarizeBy: none
+		sourceColumn: Customer Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer Zipcode'
+		dataType: string
+		lineageTag: 5789f83f-c831-4e3d-9ef8-53fdd15ab660
+		summarizeBy: none
+		sourceColumn: Customer Zipcode
+
+		annotation SummarizationSetBy = Automatic
+
+	column Latitude
+		dataType: double
+		lineageTag: 580cbe57-bc02-460c-802d-15da63dd3905
+		summarizeBy: sum
+		sourceColumn: Latitude
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Longitude
+		dataType: double
+		lineageTag: d8a8067f-1f9b-47dc-981c-da6263d97d14
+		summarizeBy: sum
+		sourceColumn: Longitude
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition DimCustomer = m
+		mode: import
+		source =
+				// Query name: DimCustomer
+				let
+				    Source = Stg_DataCoSupplyChain,
+				    Selected = Table.SelectColumns(Source, {"Customer Id", "Customer Name", "Customer Segment", "Customer City", "Customer State", "Customer Country", "Customer Zipcode", "Latitude", "Longitude"}),
+				    Deduped = Table.Distinct(Selected, {"Customer Id"})
+				in
+				    Deduped
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

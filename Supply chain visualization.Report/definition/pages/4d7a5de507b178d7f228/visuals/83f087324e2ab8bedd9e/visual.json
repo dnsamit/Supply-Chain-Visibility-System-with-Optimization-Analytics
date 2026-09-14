@@ -1,0 +1,297 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "83f087324e2ab8bedd9e",
+  "position": {
+    "x": 0,
+    "y": 472.72727272727269,
+    "z": 16,
+    "height": 247.27272727272725,
+    "width": 636.36363636363626,
+    "tabOrder": 15
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimOrderLocation"
+                    }
+                  },
+                  "Property": "Market"
+                }
+              },
+              "queryRef": "DimOrderLocation.Market",
+              "nativeQueryRef": "Market"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FactOrders"
+                    }
+                  },
+                  "Property": "Shipping Mode"
+                }
+              },
+              "queryRef": "FactOrders.Shipping Mode",
+              "nativeQueryRef": "Shipping Mode"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Total Orders"
+                }
+              },
+              "queryRef": "_Measures.Total Orders",
+              "nativeQueryRef": "Total Orders"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Alert Late Risk Orders"
+                }
+              },
+              "queryRef": "_Measures.Alert Late Risk Orders",
+              "nativeQueryRef": "Alert Late Risk Orders"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Alert Late Risk %"
+                }
+              },
+              "queryRef": "_Measures.Alert Late Risk %",
+              "nativeQueryRef": "Alert Late Risk %"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Alert Avg Delay Variance"
+                }
+              },
+              "queryRef": "_Measures.Alert Avg Delay Variance",
+              "nativeQueryRef": "Alert Avg Delay Variance"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Alert Canceled Orders"
+                }
+              },
+              "queryRef": "_Measures.Alert Canceled Orders",
+              "nativeQueryRef": "Alert Canceled Orders"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FactOrders"
+                  }
+                },
+                "Property": "Shipping Mode"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "74.18181814863247D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "DimOrderLocation.Market"
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {}
+        }
+      ],
+      "grid": [
+        {
+          "properties": {
+            "outlineColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 1,
+                      "Percent": 0
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "6256b4d601a459b68711",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DimOrderLocation"
+              }
+            },
+            "Property": "Market"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "7b8ce444491e3a2c50a3",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FactOrders"
+              }
+            },
+            "Property": "Shipping Mode"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "3f986ee04ee06843e989",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Measures"
+              }
+            },
+            "Property": "Total Orders"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "3ac91f774aabe521bd02",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Measures"
+              }
+            },
+            "Property": "Alert Late Risk Orders"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "2b053a6d9b0ceb49293a",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Measures"
+              }
+            },
+            "Property": "Alert Late Risk %"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "eddd37a6748f67da1951",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Measures"
+              }
+            },
+            "Property": "Alert Avg Delay Variance"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "c2b0547ac271edd1d630",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Measures"
+              }
+            },
+            "Property": "Alert Canceled Orders"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}
